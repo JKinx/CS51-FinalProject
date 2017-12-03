@@ -8,9 +8,9 @@ The evaluator is called eval_l.
 
 **About lexical scope**
 
-Ocaml is a lexically scoped language which means that any values are evaluated in the scope of the environment they are defined in, that is, it is governed by the lexical structure of the . 
+Ocaml is a lexically scoped language which means that any values are evaluated in the scope of the environment they are defined in, that is, it is governed by the lexical structure of the code. 
 
-The substitution model by virtue of its definition is lexically scoped but the dynamic semantic does not. With dynamic syntax, the values determined by the dynamic ordering in which they are evaluated.
+The substitution model by virtue of its definition is lexically scoped but the dynamic semantic is not. With dynamic syntax, the values are determined by the dynamic ordering in which they are evaluated.
 
 For example in the code below
 
@@ -22,19 +22,19 @@ f 3 ;;
 ```
 
 ​		
-The function f is applied to three when the environment has value 2 assigned to x but since the function was defined in when x was equal to 3, a lexically scoped evaluator would scope f to x with value 1 resulting in a final value of 4. However, a dynamically scoped evaluator would calculate f with x of value 2 resulting in a final value of 5.
+The function f is applied to 3 when the environment has value 2 assigned to x but since the function was defined in when x was equal to 1, a lexically scoped evaluator would scope f to x with value 1 resulting in a final value of 4. However, a dynamically scoped evaluator would calculate f with x of value 2 resulting in a final value of 5.
 
 Below are some snapshots of the values outputed by eval_d and eval_l:
 
-*eval_l evaluates to 5*
+*eval_d evaluates to 5*
 
+![Eval_d](a.png)
 
-![Eval_l](a.png)
 ​	
 
-*eval_d evaluates to 4*	
+*eval_l evaluates to 4*	
 
-​		![Eval_d](b.png)
+​		![Eval_l](b.png)
 
 
 **Implementation**			
