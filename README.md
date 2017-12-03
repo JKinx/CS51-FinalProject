@@ -30,8 +30,6 @@ Below are some snapshots of the values outputed by eval_d and eval_l:
 
 ![Eval_d](a.png)
 
-​	
-
 *eval_l evaluates to 4*	
 
 ​		![Eval_l](b.png)
@@ -39,11 +37,9 @@ Below are some snapshots of the values outputed by eval_d and eval_l:
 
 **Implementation**			
 
-**Implementation**			
-
 In order to implement lexical scoping, I changed the way functions (Fun) were evaluated so that whenever the evaluator comes across a Fun expression, it was made into a closure with the current (in the lexical scope of the function) environment. So when we need to evaluate an application, the function is now evaluated in the environment it was defined in and not the most recent dynamic environment.
 
-After writing the eval_l evaluator, I realized that eval_l and eval_d have most of their code in common so I decided to make a new function called create_eval which takes an extra argument called model (which takes a model data type) in addition to those taken by eval_l and eval_d. Create_eval now creates a closure regardless of where the evaluator is lexically scoped. However, if the model parameter if provided as Dynamic, it makes a closure with an empty environment and does the application evaluation in the most recent environment.
+After writing the eval_l evaluator, I realized that eval_l and eval_d have most of their code in common so I decided to make a new function called create_eval which takes an extra argument called model (which takes a model data type) in addition to those taken by eval_l and eval_d. Create_eval now creates a closure regardless of whether the evaluator is lexically scoped or not. However, if the model parameter is provided as Dynamic, it makes a closure with an empty environment and does the application evaluation in the most recent environment.
 
 I decided to use closure for both eval_d and eval_l since it made the match case in App evaluation simpler. 
 
@@ -53,9 +49,9 @@ I decided to use closure for both eval_d and eval_l since it made the match case
 
 I implemented three additional atomic types: strings, floats and bignum.
 
-In order to implement these I extensions, I looked up the information about doing parsing online and tried to understand the minimal_parse and minimal_lex files.
+In order to implement these extensions, I looked up the information about doing parsing online and tried to understand the minimal_parse and minimal_lex files.
 
-I then addes an extra regexp for the data types.
+I then added an extra regexp for the data types.
 
 ##### **String**
 
@@ -65,7 +61,7 @@ The regexp for string is
 let strings = ['"'] [^ '"']* ['"']
 ```
 
-Here, I match it with something that starts with a double quotation marks and ends with another double quotation. The values in between can be another other character other than double quotes.
+Here, I match it with something that starts with a double quotation marks and ends with another double quotation. The values in between can be any other character other than double quotes.
 
 The token for strings is STRING and it is represented as "String of string" in expr.
 
@@ -75,7 +71,7 @@ For Strings, I added extra match cases for the exp_to_string and exp_to_abstract
 
 The operations that can be done on Strings are Equal and Concat.
 
-Concat is a new binop that I implemented which takes two "Strings" and concatenation.
+Concat is a new binop that I implemented which takes two "Strings" and concatenates them.
 
 In order to  parse concat, I added an extra symbol '^' which is matched to a token CONCAT that lies between two other tokens. 
 
@@ -95,13 +91,13 @@ This matches it with anything that has a period after more than or equal to 1 di
 
 The token for floats is FLOATS and it is represented as "Float of float" in expr.
 
-As for Strings, I added extra match cases for floats in  the exp_to_string and exp_to_abstract_string functions.
+As for Strings, I added extra match cases for floats in the exp_to_string and exp_to_abstract_string functions.
 
 
 
 The operations that can be done on floats are the same expressions that can be done on Num : Negate, Equals, LessThan, Plus, Minus, Times.
 
-I decided to limit calculations for floats within floats themselves just like ocaml, so the unops and binops can only be implemented between floats and not between floats and integers.
+I decided to limit calculations for floats within floats themselves just like ocaml does, so the unops and binops can only be implemented between floats and not between floats and integers.
 
 
 
