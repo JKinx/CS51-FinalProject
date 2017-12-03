@@ -29,12 +29,12 @@ Below are some snapshots of the values outputed by eval_d and eval_l:
 *eval_l evaluates to 5*
 
 
-![Screen Shot 2017-05-03 at 4.51.06 PM](/Users/jambaykinley/Documents/CS51/project-JKinx/Screen Shot 2017-05-03 at 4.51.06 PM.png)
+![Eval_l](a.png)
 ​	
 
 *eval_d evaluates to 4*	
 
-​		![Screen Shot 2017-05-03 at 4.51.30 PM](/Users/jambaykinley/Documents/CS51/project-JKinx/Screen Shot 2017-05-03 at 4.51.30 PM.png)
+​		![Eval_d](b.png)
 
 
 **Implementation**			
@@ -162,5 +162,5 @@ Just like Floats and Nums, I decided to limit calculations for bignums within bi
 
 Some examples of using bignums in the miniml are shown below:
 
-![Screen Shot 2017-05-03 at 4.50.14 PM](/Users/jambaykinley/Documents/CS51/project-JKinx/Screen Shot 2017-05-03 at 4.50.14 PM.png)
+![Example of B](c.png)
 
